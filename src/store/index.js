@@ -6,7 +6,10 @@ Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
-    carPanelData: []
+    carPanelData: [],
+    maxCount: false,
+    carShow: false,
+    carTimer: null
   },
   getters: {
     totleCount(state) {
@@ -31,13 +34,40 @@ let store = new Vuex.Store({
         if (goods.sku_id === data.sku_id) {
           goods.count++
           bOff = false
+          if(goods.count > goods.limit_num) {
+            goods.count--
+            state.maxCount = true
+            return
+          }
+          state.carShow = true
         }
       })
       if (bOff) {
         let goodsData = data
         Vue.set(goodsData, 'count', 1)
         state.carPanelData.push(goodsData)
+        state.carShow = true
       }
+    },
+    delCarPanelData(state, id) {
+      state.carPanelData.forEach((goods, index) => {
+        if (goods.sku_id === id) {
+          state.carPanelData.splice(index, 1)
+          return
+        }
+      })
+    },
+    closePrompt(state) {
+      state.maxCount = false
+    },
+    showCar(state) {
+      clearTimeout(state.carTimer)
+      state.carShow = true
+    },
+    hideCar(state) {
+      state.carTimer = setTimeout(() => {
+        state.carShow = false
+      }, 500)
     }
   }
 })
