@@ -4,6 +4,7 @@ import '@/assets/css/reset.css'
 import '@/assets/css/header.css'
 import Shop from "@/views/shop";
 import Item from "@/views/item";
+import Cart from "@/views/cart";
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/item',
       name: 'Item',
       component: Item
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: Cart
     }
   ]
 })
