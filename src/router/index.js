@@ -5,6 +5,7 @@ import '@/assets/css/header.css'
 import Shop from "@/views/shop";
 import Item from "@/views/item";
 import Cart from "@/views/cart";
+import Checkout from "@/views/checkout";
 
 Vue.use(Router)
 

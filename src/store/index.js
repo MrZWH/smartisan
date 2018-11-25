@@ -59,6 +59,16 @@ let store = new Vuex.Store({
         }
       })
       return price
+    },
+    checkedGoods(state) {
+      let checkedGoods = []
+      state.carPanelData.forEach(goods => {
+        if (goods.checked) {
+          checkedGoods.push(goods)
+        }
+      })
+
+      return checkedGoods
     }
   },
   mutations: {
