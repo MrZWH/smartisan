@@ -1,31 +1,31 @@
 <template>
-  <div id="main">
-    <div class="sku-box store-content">
-      <div class="sort-option">
-        <ul class="line clear">
-          <li><a href="javascript:;" class="active">综合排序</a></li>
-          <li><a href="javascript:;">销量排序</a></li>
-          <li><a href="javascript:;">价格低到高</a></li>
-          <li><a href="javascript:;">价格高到低</a></li>
-        </ul>
-      </div>
-      <div class="gray-box">
-        <div class="item-box">
-          <shop-item v-for="(item, index) in goodsList" :item="item" :key="index"></shop-item>
-        </div>
-      </div>
-    </div>
+	<div id="main">
+		<div class="sku-box store-content">
+			<div class="sort-option">
+				<ul class="line clear">
+					<li><a href="javascript:;" class="active">综合排序</a></li>
+					<li><a href="javascript:;" class="">销量排序</a></li>
+					<li><a href="javascript:;" class="">价格低到高</a></li>
+					<li><a href="javascript:;" class="">价格高到低</a></li>
+				</ul>
+			</div>
+			<div class="gray-box">
+				<div class="item-box">
+					<shop-item :key="index" v-for="item,index in goodsList" :item="item"></shop-item>
+				</div>
+			</div>
+		</div>
     <prompt v-if="maxCount"></prompt>
-  </div>
+	</div>
 </template>
 
-<script>
-import goodData from "@/lib/newGoodsData";
-import shopItem from "@/components/shop-item";
-import prompt from "@/components/prompt";
 
+<script>
+import goodData from '@/lib/newGoodsData'
+import shopItem from '@/components/shop-item'
+import prompt from '@/components/prompt'
 export default {
-  data() {
+  data () {
     return {
       goodsList: goodData
     }
@@ -35,7 +35,7 @@ export default {
     prompt
   },
   computed: {
-    maxCount() {
+    maxCount () {
       return this.$store.state.maxOff
     }
   }

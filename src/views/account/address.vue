@@ -8,7 +8,7 @@
                 </div>
                 <div class="box-inner clear">
                     <div v-if="receiveInfo.length">
-                      <div class="address-list-item default-item" :key="index" v-for="(receive,index) in receiveInfo">
+                      <div class="address-list-item default-item" v-for="receive,index in receiveInfo">
                         <div class="name fn-left">
                             <div class="name-cell">{{receive.name}}</div>
                         </div>

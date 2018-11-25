@@ -1,133 +1,15 @@
-<template>
-<div id="main">
-	<div class="store-content item">
-		<div class="item-box">
-			<div class="gallery-wrapper">
-				<div class="gallery">
-					<div class="thumbnail">
-						<ul>
-							<li :class="{'on':index==0}" key="index" v-for="img,index in itemsInfo.ali_images"><img :src="img+'?x-oss-process=image/resize,w_54/quality,Q_90/format,webp'"></li>
-						</ul>
-					</div>
-					<div class="thumb">
-						<ul>
-							<li :class="{'on':index==0}" key="index" v-for="img,index in itemsInfo.ali_images"><img :src="img+'?x-oss-process=image/resize,w_440/quality,Q_90/format,webp'"></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="banner">
-				<div class="sku-custom-title">
-					<div class="params-price">
-						<span><em>¥</em><i>{{itemsInfo.price}}</i></span>
-					</div>
-					<div class="params-info">
-						<h4>{{itemsInfo.title}}</h4>
-						<h6>{{itemsInfo.sub_title}}</h6>
-					</div>
-				</div>
-				<div class="sku-dynamic-params-panel">
-					<div class="sku-dynamic-params clear">
-						<span class="params-name">颜色</span>
-						<ul class="params-colors">
-							<li :class="{'cur':color.id==$route.query.itemId}" v-for="color,index in itemsInfo.sku_list">
-								<router-link :to="{name: 'Item', query: {itemId:color.id}}" :title="color.color"><i><img :src="'http://img01.smartisanos.cn/'+color.image+'20X20.jpg'"></i></router-link>
-							</li>
-						</ul>
-					</div>
-					<div class="sku-dynamic-params clear">
-						<div class="params-name">数量</div>
-						<div class="params-detail clear">
-							<div class="item-num js-select-quantity">
-								<span class="down" :class="{'down-disabled':count<=1}" @click="subCount">-</span>
-								<span class="num">{{count}}</span>
-								<span class="up" :class="{'up-disabled':count>=itemsInfo.limit_num}" @click="addCount">+</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="sku-status">
-					<div class="cart-operation-wrapper clearfix">
-						<span class="blue-title-btn js-add-cart" @click="addCarPanelHandle"><a>加入购物车</a></span>
-						<span class="gray-title-btn" @click="checkOutHandle"><a>现在购买</a></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<prompt v-if="maxCount"></prompt>
-</div>
-</template>
-
-<script>
-import itemsData from '@/lib/newItemsData.js'
-import prompt from '@/components/prompt'
-export default {
-  data () {
-    return {
-      itemsList: itemsData,
-      count: 1
-    }
-  },
-  computed: {
-    itemsInfo () {
-      let itemsInfo = this.itemsList.filter((item) => {
-        return item.sku_id == this.$route.query.itemId
-      })[0]
-      return itemsInfo
-    },
-    maxCount () {
-      return this.$store.state.maxOff
-    }
-  },
-  methods: {
-    addCount () {
-        this.count++
-      if(this.count>this.itemsInfo.limit_num){
-        this.count = this.itemsInfo.limit_num
-        this.$store.commit('alertPrompt')
-      }
-    },
-    subCount () {
-        this.count--
-      if(this.count<1){
-        this.count = 1
-      }
-    },
-    checkOutHandle () {
-      let itemsInfo = this.itemsInfo
-      itemsInfo.count = this.count
-      let provisionalOrder = {
-        totlePrice: this.count * this.itemsInfo.price,
-        totleCount: this.count,
-        items: [itemsInfo]
-      }
-      this.$store.commit('checkOut',provisionalOrder)
-      this.$router.push({name: 'Checkout'})
-    },
-    addCarPanelHandle () {
-      let data = [this.itemsInfo,this.count]
-      this.$store.commit('addCarPanelData',data)
-    }
-  },
-  components: {
-    prompt
-  }
-}
-</script>
-
-<style>
-.item .item-box{
+@charset "utf-8";
+.item-box{
 	width: 1098px;
-  padding: 60px;
-  margin-bottom: 20px;
-  display: table;
+    padding: 60px;
+    margin-bottom: 20px;
+    display: table;
 	overflow: hidden;
-  background: #fff;
-  border-radius: 8px;
-  border: 1px solid #dcdcdc;
-  border-color: rgba(0,0,0,.14);
-  box-shadow: 0 3px 8px -6px rgba(0,0,0,.1);
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    border-color: rgba(0,0,0,.14);
+    box-shadow: 0 3px 8px -6px rgba(0,0,0,.1);
 }
 .banner, .gallery-wrapper{
 	display: table-cell;
@@ -179,7 +61,7 @@ item-box img{
     bottom: 0;
     display: none;
     opacity: 0;
-    text-align: center;
+    text-align: center;\
     user-select: none;
 }
 .thumb li.on{
@@ -293,7 +175,7 @@ item-box img{
     right: -4px;
     top: 0;
     height: 45px;
-    background: url(../assets/img/cart-updown-item.png) no-repeat;
+    background: url(../img/cart-updown-item.png) no-repeat;
     background-size: 100% auto;
 }
 .item-box .item-num .down:before{
@@ -413,5 +295,3 @@ item-box img{
 	transition: all .15s ease-out;
     background: linear-gradient(#f6f6f6,#ededed);
 }
-
-</style>

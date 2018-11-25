@@ -40,7 +40,7 @@
                     <div class="form-item-v3 select-item province-wrapper">
                       <select name="province_code" class="province select-province js-form-province js-verify" v-model="receive.provinceId">
                         <option value="0">请选择省份</option>
-                        <option :value="province.area_id" :key="index" v-for="(province,index) in addList">{{province.area_name}}</option>
+                        <option :value="province.area_id" v-for="province,index in addList">{{province.area_name}}</option>
                       </select>
                     </div>
                   </div>
@@ -48,13 +48,13 @@
                     <div class="form-item-v3 select-item city-wrapper fn-left form-focus-item">
                       <select class="city select-city js-form-city js-verify" v-model="receive.cityId">
                         <option value="0">请选择城市</option>
-                        <option :value="city.area_id" :key="index" v-for="(city,index) in cityList">{{city.area_name}}</option>
+                        <option :value="city.area_id" v-for="city,index in cityList">{{city.area_name}}</option>
                       </select>
                     </div>
                     <div class="form-item-v3 select-item district-wrapper fn-right form-focus-item">
                       <select class="city select-city js-form-city js-verify" v-model="receive.countyId">
                         <option value="0">请选择区县</option>
-                        <option :value="county.area_id" :key="index" v-for="(county,index) in couontyList">{{county.area_name}}</option>
+                        <option :value="county.area_id" v-for="county,index in couontyList">{{county.area_name}}</option>
                       </select>
                     </div>
                   </div>

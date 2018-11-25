@@ -9,7 +9,7 @@
 					<div class="box-inner js-checkout-address-panel ">
 						<div class="address-common-table js-multiple-address-panel">
 							<ul class="address-item-list clear js-address-item-list">
-								<li class="js-choose-address " :class="{'selected-address-item':info.checked}" v-for="(info,index) in receiveInfo" @click="selectedAddress(info)" :key="index">
+								<li class="js-choose-address " :class="{'selected-address-item':info.checked}" v-for="info,index in receiveInfo" @click="selectedAddress(info)">
 									<div class="address-item">
 										<div class="name-section"> {{info.name}} </div>
 										<div class="mobile-section">{{info.phone}}</div>
@@ -70,7 +70,7 @@
 					</div>
 					<div class="cart-table">
 						<div class="cart-group js-cart-group">
-							<div class="cart-items" :key="index" v-for="(item,index) in carPanelData">
+							<div class="cart-items" v-for="item,index in carPanelData">
 								<div class="items-thumb">
 									<a href="javascript:;" target="_blank"><img :src="item.ali_image+'?x-oss-process=image/resize,w_80/quality,Q_100/format,webp'"></a>
 								</div>

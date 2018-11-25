@@ -51,11 +51,11 @@ let store = new Vuex.Store({
       state.carPanelData.forEach((goods) => {
         count += goods.count;
       })
-  	  return count
-  	},
+      return count
+    },
   	totlePrice (state) {
-  	  let total = 0
-  	  state.carPanelData.forEach((goods) => {
+      let total = 0
+      state.carPanelData.forEach((goods) => {
   	    total += goods.price * goods.count
   	  })
       return total

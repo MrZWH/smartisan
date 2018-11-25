@@ -42,7 +42,7 @@
                 <span class="price fn-right">单价</span>
             </div>
             <div class="confirm-goods-table">
-                <div class="cart-items clear" :key="index" v-for="(item,index) in orderInfo.goodsData">
+                <div class="cart-items clear" v-for="item,index in orderInfo.goodsData">
                     <div class="name fn-left hide-row">
                         <div class="name-cell">
                             <a href="javascript:;" :title="item.title+'（'+item.spec_json.show_name+'）'" target="_blank">{{item.title}}（{{item.spec_json.show_name}}）</a><br>
