@@ -206,7 +206,7 @@ let store = new Vuex.Store({
       let i = state.carPanelData.length
       while(i--) {
         if (state.carPanelData[i].checked) {
-          state.carPanelData[i].splice(i, 1)
+          state.carPanelData.splice(i, 1)
         }
       }
     }
