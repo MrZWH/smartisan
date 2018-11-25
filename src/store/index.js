@@ -192,6 +192,14 @@ let store = new Vuex.Store({
       state.carTimer = setTimeout(() => {
         state.carShow = false
       }, 500)
+    },
+    submitReceive(state, data) {
+      if (data.default) {
+        state.receiveInfo.forEach((receive) => {
+          receive.default = false
+        })
+      }
+      state.receiveInfo.push(data)
     }
   }
 })
