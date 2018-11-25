@@ -200,6 +200,15 @@ let store = new Vuex.Store({
         })
       }
       state.receiveInfo.push(data)
+    },
+    submitOrder(state, data) {
+      state.orderData.unshift(data)
+      let i = state.carPanelData.length
+      while(i--) {
+        if (state.carPanelData[i].checked) {
+          state.carPanelData[i].splice(i, 1)
+        }
+      }
     }
   }
 })
