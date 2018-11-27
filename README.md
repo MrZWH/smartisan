@@ -1,7 +1,7 @@
 # smartisan
 
-> A Vue.js project
-
+> 用vue + vue-router vuex 仿锤子商城
+在线地址：https://mrzwh.github.io/smartisan/
 ## Build Setup
 
 ``` bash
